@@ -23,18 +23,19 @@ public class SLAAnalyzer
     public LocalDateTime calculateSLA(LocalDateTime iOpeningDateTime, Integer iSLA)
     {
  
+    	    //split the variable into each of the elements
     	    int yeariOpeningDateTime = iOpeningDateTime.getYear();
         	int monthiOpeningDateTime = iOpeningDateTime.getMonthValue();
         	int dayiOpeningDateTime = iOpeningDateTime.getDayOfMonth();
         	int houriOpeningDateTime = iOpeningDateTime.getHour();
         	int minuteOpeningDateTime = iOpeningDateTime.getMinute();
         	int secondiOpeningDateTime = iOpeningDateTime.getSecond();
-        	
+        	//Year Validation
         	if ((yeariOpeningDateTime != 2019) || (monthiOpeningDateTime != 8) ) {
         		System.out.println("Date out of range: "+ iOpeningDateTime);
         	}
         	else if (yeariOpeningDateTime == 2019) {
-        	//Mondays to thursdays
+        	//Validation Mondays to thursdays
         	  if ((dayiOpeningDateTime == 1) || (dayiOpeningDateTime >= 5 && dayiOpeningDateTime <= 8 ) || (dayiOpeningDateTime >= 12 && dayiOpeningDateTime <= 13 ) || (dayiOpeningDateTime >= 19 && dayiOpeningDateTime <= 22 ) || (dayiOpeningDateTime >= 25 & dayiOpeningDateTime <= 29 )) {
     			if (houriOpeningDateTime < 8) {
     				int houriOpeningDateTime2 = 16;
@@ -63,7 +64,7 @@ public class SLAAnalyzer
     				System.out.println("Maximum close date: "+ Maximum);
     			}
         	  }
-    		//Sundays and Holidays
+    		//Validation Sundays and 15
     		  if (dayiOpeningDateTime == 4 || dayiOpeningDateTime == 11 || dayiOpeningDateTime == 15  || dayiOpeningDateTime == 18  || dayiOpeningDateTime == 25) {
     			int dayiOpeningDateTime2 = dayiOpeningDateTime + 1;
     			int houriOpeningDateTime2 = 16;
@@ -72,7 +73,7 @@ public class SLAAnalyzer
         			LocalDateTime Maximum = LocalDateTime.of(yeariOpeningDateTime, monthiOpeningDateTime, dayiOpeningDateTime2, houriOpeningDateTime2, minuteOpeningDateTime2, secondiOpeningDateTime2);
     			System.out.println("Maximum close date: "+ Maximum);
     		  }
-    		//14
+    		//Validation 14 
     		  if (dayiOpeningDateTime == 14) {
     			if (houriOpeningDateTime < 8) {
     				int houriOpeningDateTime2 = 16;
@@ -102,7 +103,7 @@ public class SLAAnalyzer
     			}
     		  }
     		
-    		//Saturdays
+    		//Validation Saturdays
     		  if (dayiOpeningDateTime == 3 || dayiOpeningDateTime == 10 || dayiOpeningDateTime == 17  || dayiOpeningDateTime == 24) {
     			int dayiOpeningDateTime2 = dayiOpeningDateTime + 2;
     			int houriOpeningDateTime2 = 16;
@@ -111,7 +112,7 @@ public class SLAAnalyzer
         			LocalDateTime Maximum = LocalDateTime.of(yeariOpeningDateTime, monthiOpeningDateTime, dayiOpeningDateTime2, houriOpeningDateTime2, minuteOpeningDateTime2, secondiOpeningDateTime2);
     			System.out.println("Maximum close date: "+ Maximum);
     		  }
-    		//Saturdays31
+    		//Validation Saturday 31
     		  if (dayiOpeningDateTime == 31) {
     			int monthiOpeningDateTime2 = monthiOpeningDateTime + 1;
     			int dayiOpeningDateTime2 = 2;
@@ -121,7 +122,7 @@ public class SLAAnalyzer
         			LocalDateTime Maximum = LocalDateTime.of(yeariOpeningDateTime, monthiOpeningDateTime2, dayiOpeningDateTime2, houriOpeningDateTime2, minuteOpeningDateTime2, secondiOpeningDateTime2);
     			System.out.println("Maximum close date: "+ Maximum);
     		  }
-    		//Fridays
+    		//Validation Fridays
     		  if (dayiOpeningDateTime == 2 || dayiOpeningDateTime == 9 || dayiOpeningDateTime == 16  || dayiOpeningDateTime == 23) {
     			if (houriOpeningDateTime < 8) {
     				int houriOpeningDateTime2 = 16;
